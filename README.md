@@ -28,6 +28,7 @@
 
 2.1 DB 설계
 --
+
 ![image](https://user-images.githubusercontent.com/49605999/62818065-7b457880-bb7c-11e9-84ca-1c846153deb4.png)
 
 
@@ -54,11 +55,16 @@ IDE : Microsoft Visual Studio Community 2019 버전 16.0.3
 
 Microsoft .NET Framework 4.6
 
+DB : MSSQL
 
 3.사용 방법
 ==
 직원용은 관리자를  통햇허 아이디 비밀 번호를 발급 받아야 하며
 고객용은 회원가입을 통해서 쉽게 가입할수 있도록 만들었다.
+
+DB 는 MSSQL 을 썻으며 어느버전을 이용해도 만들수 있도록 스크립트 형식으로 만들어서 아래에 배포 합니다.
+
+[Yes(ver2.0).zip](https://github.com/blackzero23/UsedBookStore_Winform/files/3488549/Yes.ver2.0.zip)
 
 
 
