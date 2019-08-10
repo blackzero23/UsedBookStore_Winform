@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29C218DE-A0CA-43D4-A9CD-46AB61E9004A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AlaMungo.Employee</RootNamespace>
+    <AssemblyName>AlaMungo.Employee</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\YesAlaMungoLogo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\BuyListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BuyListControl.designer.cs">
+      <DependentUpon>BuyListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BuySearchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BuySearchControl.Designer.cs">
+      <DependentUpon>BuySearchControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InvoiceListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InvoiceListControl.Designer.cs">
+      <DependentUpon>InvoiceListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InvoiceSearchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InvoiceSearchControl.Designer.cs">
+      <DependentUpon>InvoiceSearchControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SellListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SellListControl.Designer.cs">
+      <DependentUpon>SellListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SellSearchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SellSearchControl.Designer.cs">
+      <DependentUpon>SellSearchControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UsedBookListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UsedBookListControl.Designer.cs">
+      <DependentUpon>UsedBookListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UsedBookSearchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UsedBookSearchControl.Designer.cs">
+      <DependentUpon>UsedBookSearchControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BuyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BuyForm.designer.cs">
+      <DependentUpon>BuyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BuyListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BuyListForm.designer.cs">
+      <DependentUpon>BuyListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InvoiceListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InvoiceListForm.Designer.cs">
+      <DependentUpon>InvoiceListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginSuccessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginSuccessForm.Designer.cs">
+      <DependentUpon>LoginSuccessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SellBookInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SellBookInfoForm.Designer.cs">
+      <DependentUpon>SellBookInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SellListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SellListForm.Designer.cs">
+      <DependentUpon>SellListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsedBookInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UsedBookInfoForm.Designer.cs">
+      <DependentUpon>UsedBookInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsedBookListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UsedBookListForm.Designer.cs">
+      <DependentUpon>UsedBookListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\BuyListControl.resx">
+      <DependentUpon>BuyListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\BuySearchControl.resx">
+      <DependentUpon>BuySearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InvoiceListControl.resx">
+      <DependentUpon>InvoiceListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InvoiceSearchControl.resx">
+      <DependentUpon>InvoiceSearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SellListControl.resx">
+      <DependentUpon>SellListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SellSearchControl.resx">
+      <DependentUpon>SellSearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UsedBookListControl.resx">
+      <DependentUpon>UsedBookListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UsedBookSearchControl.resx">
+      <DependentUpon>UsedBookSearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BuyForm.resx">
+      <DependentUpon>BuyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BuyListForm.resx">
+      <DependentUpon>BuyListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InvoiceListForm.resx">
+      <DependentUpon>InvoiceListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginSuccessForm.resx">
+      <DependentUpon>LoginSuccessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SellBookInfoForm.resx">
+      <DependentUpon>SellBookInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SellListForm.resx">
+      <DependentUpon>SellListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsedBookInfoForm.resx">
+      <DependentUpon>UsedBookInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsedBookListForm.resx">
+      <DependentUpon>UsedBookListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\AlaMungo.Data.Buy.datasource" />
+    <None Include="Properties\DataSources\AlaMungo.Data.Sell.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlaMungo.Data\AlaMungo.Data.csproj">
+      <Project>{99de9617-6ded-45f7-ac47-ef683935314f}</Project>
+      <Name>AlaMungo.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AlaMungoMain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_icon_key_2867915_5SG_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_header_account_image_line_1540176_1Do_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_header-account-image-line_1540176.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_icon-key_2867915.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Purchase1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sale3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Book1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delivery_Truck1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delivery_Truck1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Purchase1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sale3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Book1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YesAlaMungoLogo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Log.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

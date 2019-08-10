@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="YesAlaMungoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Buy">
+          <Key>
+            <PropertyRef Name="BuyID" />
+          </Key>
+          <Property Name="BuyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuyerID" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubAddress" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="InvoiceState" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuyUsedBook">
+          <Key>
+            <PropertyRef Name="UsedBookID" />
+            <PropertyRef Name="BuyID" />
+          </Key>
+          <Property Name="UsedBookID" Type="int" Nullable="false" />
+          <Property Name="Dummy" Type="bit" />
+          <Property Name="BuyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="LoginID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MetaDataBook">
+          <Key>
+            <PropertyRef Name="MetaDataBookID" />
+          </Key>
+          <Property Name="MetaDataBookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Writer" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Publisher" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sell">
+          <Key>
+            <PropertyRef Name="SellID" />
+          </Key>
+          <Property Name="SellID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="Checked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SellUsedBook">
+          <Key>
+            <PropertyRef Name="SellID" />
+            <PropertyRef Name="UsedBookID" />
+          </Key>
+          <Property Name="SellID" Type="int" Nullable="false" />
+          <Property Name="Dummy" Type="bit" />
+          <Property Name="UsedBookID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsedBook">
+          <Key>
+            <PropertyRef Name="UsedBookID" />
+          </Key>
+          <Property Name="UsedBookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MetaDataID" Type="int" Nullable="false" />
+          <Property Name="Quality" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsSell" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Buy_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Buy" Type="Self.Buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Buy">
+              <PropertyRef Name="BuyerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuyUsedBook_Buy">
+          <End Role="Buy" Type="Self.Buy" Multiplicity="1" />
+          <End Role="BuyUsedBook" Type="Self.BuyUsedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buy">
+              <PropertyRef Name="BuyID" />
+            </Principal>
+            <Dependent Role="BuyUsedBook">
+              <PropertyRef Name="BuyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuyUsedBook_UsedBook">
+          <End Role="UsedBook" Type="Self.UsedBook" Multiplicity="1" />
+          <End Role="BuyUsedBook" Type="Self.BuyUsedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsedBook">
+              <PropertyRef Name="UsedBookID" />
+            </Principal>
+            <Dependent Role="BuyUsedBook">
+              <PropertyRef Name="UsedBookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Sell" Type="Self.Sell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Sell">
+              <PropertyRef Name="SellerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleUsedBook_Sale">
+          <End Role="Sell" Type="Self.Sell" Multiplicity="1" />
+          <End Role="SellUsedBook" Type="Self.SellUsedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sell">
+              <PropertyRef Name="SellID" />
+            </Principal>
+            <Dependent Role="SellUsedBook">
+              <PropertyRef Name="SellID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleUsedBook_UsedBook">
+          <End Role="UsedBook" Type="Self.UsedBook" Multiplicity="1" />
+          <End Role="SellUsedBook" Type="Self.SellUsedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsedBook">
+              <PropertyRef Name="UsedBookID" />
+            </Principal>
+            <Dependent Role="SellUsedBook">
+              <PropertyRef Name="UsedBookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsedBook_MetaDataBook">
+          <End Role="MetaDataBook" Type="Self.MetaDataBook" Multiplicity="1" />
+          <End Role="UsedBook" Type="Self.UsedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetaDataBook">
+              <PropertyRef Name="MetaDataBookID" />
+            </Principal>
+            <Dependent Role="UsedBook">
+              <PropertyRef Name="MetaDataID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YesAlaMungoModelStoreContainer">
+          <EntitySet Name="Buy" EntityType="Self.Buy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuyUsedBook" EntityType="Self.BuyUsedBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MetaDataBook" EntityType="Self.MetaDataBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sell" EntityType="Self.Sell" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SellUsedBook" EntityType="Self.SellUsedBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsedBook" EntityType="Self.UsedBook" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Buy_Customer" Association="Self.FK_Buy_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Buy" EntitySet="Buy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuyUsedBook_Buy" Association="Self.FK_BuyUsedBook_Buy">
+            <End Role="Buy" EntitySet="Buy" />
+            <End Role="BuyUsedBook" EntitySet="BuyUsedBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuyUsedBook_UsedBook" Association="Self.FK_BuyUsedBook_UsedBook">
+            <End Role="UsedBook" EntitySet="UsedBook" />
+            <End Role="BuyUsedBook" EntitySet="BuyUsedBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Customer" Association="Self.FK_Sale_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Sell" EntitySet="Sell" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleUsedBook_Sale" Association="Self.FK_SaleUsedBook_Sale">
+            <End Role="Sell" EntitySet="Sell" />
+            <End Role="SellUsedBook" EntitySet="SellUsedBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleUsedBook_UsedBook" Association="Self.FK_SaleUsedBook_UsedBook">
+            <End Role="UsedBook" EntitySet="UsedBook" />
+            <End Role="SellUsedBook" EntitySet="SellUsedBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsedBook_MetaDataBook" Association="Self.FK_UsedBook_MetaDataBook">
+            <End Role="MetaDataBook" EntitySet="MetaDataBook" />
+            <End Role="UsedBook" EntitySet="UsedBook" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YesAlaMungoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Buy">
+          <Key>
+            <PropertyRef Name="BuyID" />
+          </Key>
+          <Property Name="BuyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuyerID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InvoiceState" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Buy_Customer" FromRole="Buy" ToRole="Customer" />
+          <NavigationProperty Name="BuyUsedBooks" Relationship="Self.FK_BuyUsedBook_Buy" FromRole="Buy" ToRole="BuyUsedBook" />
+        </EntityType>
+        <EntityType Name="BuyUsedBook">
+          <Key>
+            <PropertyRef Name="UsedBookID" />
+            <PropertyRef Name="BuyID" />
+          </Key>
+          <Property Name="UsedBookID" Type="Int32" Nullable="false" />
+          <Property Name="Dummy" Type="Boolean" />
+          <Property Name="BuyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Buy" Relationship="Self.FK_BuyUsedBook_Buy" FromRole="BuyUsedBook" ToRole="Buy" />
+          <NavigationProperty Name="UsedBook" Relationship="Self.FK_BuyUsedBook_UsedBook" FromRole="BuyUsedBook" ToRole="UsedBook" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Buys" Relationship="Self.FK_Buy_Customer" FromRole="Customer" ToRole="Buy" />
+          <NavigationProperty Name="Sells" Relationship="Self.FK_Sale_Customer" FromRole="Customer" ToRole="Sell" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="LoginID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MetaDataBook">
+          <Key>
+            <PropertyRef Name="MetaDataBookID" />
+          </Key>
+          <Property Name="MetaDataBookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Writer" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Publisher" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UsedBooks" Relationship="Self.FK_UsedBook_MetaDataBook" FromRole="MetaDataBook" ToRole="UsedBook" />
+        </EntityType>
+        <EntityType Name="Sell">
+          <Key>
+            <PropertyRef Name="SellID" />
+          </Key>
+          <Property Name="SellID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Checked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Sale_Customer" FromRole="Sell" ToRole="Customer" />
+          <NavigationProperty Name="SellUsedBooks" Relationship="Self.FK_SaleUsedBook_Sale" FromRole="Sell" ToRole="SellUsedBook" />
+        </EntityType>
+        <EntityType Name="SellUsedBook">
+          <Key>
+            <PropertyRef Name="SellID" />
+            <PropertyRef Name="UsedBookID" />
+          </Key>
+          <Property Name="SellID" Type="Int32" Nullable="false" />
+          <Property Name="Dummy" Type="Boolean" />
+          <Property Name="UsedBookID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sell" Relationship="Self.FK_SaleUsedBook_Sale" FromRole="SellUsedBook" ToRole="Sell" />
+          <NavigationProperty Name="UsedBook" Relationship="Self.FK_SaleUsedBook_UsedBook" FromRole="SellUsedBook" ToRole="UsedBook" />
+        </EntityType>
+        <EntityType Name="UsedBook">
+          <Key>
+            <PropertyRef Name="UsedBookID" />
+          </Key>
+          <Property Name="UsedBookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MetaDataID" Type="Int32" Nullable="false" />
+          <Property Name="Quality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsSell" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BuyUsedBooks" Relationship="Self.FK_BuyUsedBook_UsedBook" FromRole="UsedBook" ToRole="BuyUsedBook" />
+          <NavigationProperty Name="MetaDataBook" Relationship="Self.FK_UsedBook_MetaDataBook" FromRole="UsedBook" ToRole="MetaDataBook" />
+          <NavigationProperty Name="SellUsedBooks" Relationship="Self.FK_SaleUsedBook_UsedBook" FromRole="UsedBook" ToRole="SellUsedBook" />
+        </EntityType>
+        <Association Name="FK_Buy_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Buy" Type="Self.Buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Buy">
+              <PropertyRef Name="BuyerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuyUsedBook_Buy">
+          <End Role="Buy" Type="Self.Buy" Multiplicity="1" />
+          <End Role="BuyUsedBook" Type="Self.BuyUsedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buy">
+              <PropertyRef Name="BuyID" />
+            </Principal>
+            <Dependent Role="BuyUsedBook">
+              <PropertyRef Name="BuyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuyUsedBook_UsedBook">
+          <End Role="UsedBook" Type="Self.UsedBook" Multiplicity="1" />
+          <End Role="BuyUsedBook" Type="Self.BuyUsedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsedBook">
+              <PropertyRef Name="UsedBookID" />
+            </Principal>
+            <Dependent Role="BuyUsedBook">
+              <PropertyRef Name="UsedBookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Sell" Type="Self.Sell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Sell">
+              <PropertyRef Name="SellerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsedBook_MetaDataBook">
+          <End Role="MetaDataBook" Type="Self.MetaDataBook" Multiplicity="1" />
+          <End Role="UsedBook" Type="Self.UsedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetaDataBook">
+              <PropertyRef Name="MetaDataBookID" />
+            </Principal>
+            <Dependent Role="UsedBook">
+              <PropertyRef Name="MetaDataID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleUsedBook_Sale">
+          <End Role="Sell" Type="Self.Sell" Multiplicity="1" />
+          <End Role="SellUsedBook" Type="Self.SellUsedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sell">
+              <PropertyRef Name="SellID" />
+            </Principal>
+            <Dependent Role="SellUsedBook">
+              <PropertyRef Name="SellID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleUsedBook_UsedBook">
+          <End Role="UsedBook" Type="Self.UsedBook" Multiplicity="1" />
+          <End Role="SellUsedBook" Type="Self.SellUsedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsedBook">
+              <PropertyRef Name="UsedBookID" />
+            </Principal>
+            <Dependent Role="SellUsedBook">
+              <PropertyRef Name="UsedBookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YesAlaMungoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Buys" EntityType="Self.Buy" />
+          <EntitySet Name="BuyUsedBooks" EntityType="Self.BuyUsedBook" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="MetaDataBooks" EntityType="Self.MetaDataBook" />
+          <EntitySet Name="Sells" EntityType="Self.Sell" />
+          <EntitySet Name="SellUsedBooks" EntityType="Self.SellUsedBook" />
+          <EntitySet Name="UsedBooks" EntityType="Self.UsedBook" />
+          <AssociationSet Name="FK_Buy_Customer" Association="Self.FK_Buy_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Buy" EntitySet="Buys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuyUsedBook_Buy" Association="Self.FK_BuyUsedBook_Buy">
+            <End Role="Buy" EntitySet="Buys" />
+            <End Role="BuyUsedBook" EntitySet="BuyUsedBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuyUsedBook_UsedBook" Association="Self.FK_BuyUsedBook_UsedBook">
+            <End Role="UsedBook" EntitySet="UsedBooks" />
+            <End Role="BuyUsedBook" EntitySet="BuyUsedBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Customer" Association="Self.FK_Sale_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Sell" EntitySet="Sells" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsedBook_MetaDataBook" Association="Self.FK_UsedBook_MetaDataBook">
+            <End Role="MetaDataBook" EntitySet="MetaDataBooks" />
+            <End Role="UsedBook" EntitySet="UsedBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleUsedBook_Sale" Association="Self.FK_SaleUsedBook_Sale">
+            <End Role="Sell" EntitySet="Sells" />
+            <End Role="SellUsedBook" EntitySet="SellUsedBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleUsedBook_UsedBook" Association="Self.FK_SaleUsedBook_UsedBook">
+            <End Role="UsedBook" EntitySet="UsedBooks" />
+            <End Role="SellUsedBook" EntitySet="SellUsedBooks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YesAlaMungoModelStoreContainer" CdmEntityContainer="YesAlaMungoEntities">
+          <EntitySetMapping Name="Buys">
+            <EntityTypeMapping TypeName="YesAlaMungoModel.Buy">
+              <MappingFragment StoreEntitySet="Buy">
+                <ScalarProperty Name="BuyID" ColumnName="BuyID" />
+                <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SubAddress" ColumnName="SubAddress" />
+                <ScalarProperty Name="InvoiceState" ColumnName="InvoiceState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuyUsedBooks">
+            <EntityTypeMapping TypeName="YesAlaMungoModel.BuyUsedBook">
+              <MappingFragment StoreEntitySet="BuyUsedBook">
+                <ScalarProperty Name="UsedBookID" ColumnName="UsedBookID" />
+                <ScalarProperty Name="Dummy" ColumnName="Dummy" />
+                <ScalarProperty Name="BuyID" ColumnName="BuyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="YesAlaMungoModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="YesAlaMungoModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MetaDataBooks">
+            <EntityTypeMapping TypeName="YesAlaMungoModel.MetaDataBook">
+              <MappingFragment StoreEntitySet="MetaDataBook">
+                <ScalarProperty Name="MetaDataBookID" ColumnName="MetaDataBookID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Writer" ColumnName="Writer" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sells">
+            <EntityTypeMapping TypeName="YesAlaMungoModel.Sell">
+              <MappingFragment StoreEntitySet="Sell">
+                <ScalarProperty Name="SellID" ColumnName="SellID" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Checked" ColumnName="Checked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SellUsedBooks">
+            <EntityTypeMapping TypeName="YesAlaMungoModel.SellUsedBook">
+              <MappingFragment StoreEntitySet="SellUsedBook">
+                <ScalarProperty Name="SellID" ColumnName="SellID" />
+                <ScalarProperty Name="Dummy" ColumnName="Dummy" />
+                <ScalarProperty Name="UsedBookID" ColumnName="UsedBookID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsedBooks">
+            <EntityTypeMapping TypeName="YesAlaMungoModel.UsedBook">
+              <MappingFragment StoreEntitySet="UsedBook">
+                <ScalarProperty Name="UsedBookID" ColumnName="UsedBookID" />
+                <ScalarProperty Name="MetaDataID" ColumnName="MetaDataID" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="IsSell" ColumnName="IsSell" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

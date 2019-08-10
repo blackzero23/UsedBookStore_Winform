@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6ec156bfa4ba4457be4047eb54de9514" Name="Diagram1">
+        <EntityTypeShape EntityType="YesAlaMungoModel.Buy" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="YesAlaMungoModel.BuyUsedBook" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YesAlaMungoModel.Customer" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="YesAlaMungoModel.Employee" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="YesAlaMungoModel.MetaDataBook" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="YesAlaMungoModel.Sell" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="YesAlaMungoModel.SellUsedBook" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YesAlaMungoModel.UsedBook" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="YesAlaMungoModel.FK_Buy_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="YesAlaMungoModel.FK_BuyUsedBook_Buy" ManuallyRouted="false" />
+        <AssociationConnector Association="YesAlaMungoModel.FK_BuyUsedBook_UsedBook" ManuallyRouted="false" />
+        <AssociationConnector Association="YesAlaMungoModel.FK_Sale_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="YesAlaMungoModel.FK_UsedBook_MetaDataBook" ManuallyRouted="false" />
+        <AssociationConnector Association="YesAlaMungoModel.FK_SaleUsedBook_Sale" ManuallyRouted="false" />
+        <AssociationConnector Association="YesAlaMungoModel.FK_SaleUsedBook_UsedBook" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

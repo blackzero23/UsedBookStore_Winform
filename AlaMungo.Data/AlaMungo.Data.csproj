@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{99DE9617-6DED-45F7-AC47-EF683935314F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AlaMungo.Data</RootNamespace>
+    <AssemblyName>AlaMungo.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buy.cs">
+      <DependentUpon>YesAlaMungo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BuyUsedBook.cs">
+      <DependentUpon>YesAlaMungo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>YesAlaMungo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BuyData.cs" />
+    <Compile Include="Data\BuyUsedBookData.cs" />
+    <Compile Include="Data\CustomerData.cs" />
+    <Compile Include="Data\DB.cs" />
+    <Compile Include="Data\EmployeeData.cs" />
+    <Compile Include="Data\EntityData.cs" />
+    <Compile Include="Data\MetaDataBookData.cs" />
+    <Compile Include="Data\SellData.cs" />
+    <Compile Include="Data\SellUsedBookData.cs" />
+    <Compile Include="Data\UsedBookData.cs" />
+    <Compile Include="DbContextFactory.cs" />
+    <Compile Include="Discount.cs" />
+    <Compile Include="Employee.cs">
+      <DependentUpon>YesAlaMungo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Buy.cs" />
+    <Compile Include="Entities\Sell.cs" />
+    <Compile Include="Entities\UsedBook.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="MetaDataBook.cs">
+      <DependentUpon>YesAlaMungo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sell.cs">
+      <DependentUpon>YesAlaMungo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SellUsedBook.cs">
+      <DependentUpon>YesAlaMungo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="System\Windows\Forms.cs" />
+    <Compile Include="UsedBook.cs">
+      <DependentUpon>YesAlaMungo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="YesAlaMungo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YesAlaMungo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="YesAlaMungo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YesAlaMungo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="YesAlaMungo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YesAlaMungo.edmx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="YesAlaMungo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>YesAlaMungo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="YesAlaMungo.edmx.diagram">
+      <DependentUpon>YesAlaMungo.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="YesAlaMungo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>YesAlaMungo.edmx</DependentUpon>
+      <LastGenOutput>YesAlaMungo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="YesAlaMungo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>YesAlaMungo.edmx</DependentUpon>
+      <LastGenOutput>YesAlaMungo.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
