@@ -45,7 +45,7 @@
 --
 운영 체제 : Windows 7 Professional K
 
-컴파일 버전(언어) : _MSC_VER 1916 (표준 C언어)
+컴파일 버전(언어) : Roslyn
 
 CPU : IntelⓇ Core™ i7-4790 CPU @ 3.60GHz
 
